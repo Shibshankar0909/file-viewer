@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { pdfjs, Document, Page, Thumbnail } from 'react-pdf';
+import { pdfjs, Document, Page } from 'react-pdf';
 import { FaArrowLeft, FaArrowRight, FaSearchPlus, FaSearchMinus } from 'react-icons/fa';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -14,6 +14,7 @@ const PDFViewer = ({ file }) => {
   const [scale, setScale] = useState(1);
   const [isOverflowed, setIsOverflowed] = useState(false);
   const [jumpToPage, setJumpToPage] = useState('');
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1000); // Initial check
 
   const viewerRef = useRef(null);
 
@@ -32,18 +33,21 @@ const PDFViewer = ({ file }) => {
 
     checkOverflow();
 
-    window.addEventListener('resize', checkOverflow);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1000);
+      checkOverflow(); // Check overflow on resize
+    };
+
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', checkOverflow);
+      window.removeEventListener('resize', handleResize);
     };
   }, [scale, pageNumber]);
 
   const changePage = (offset) => {
     setPageNumber(prevPageNumber => prevPageNumber + offset);
   };
-  function onItemClick({ pageNumber: itemPageNumber }) {
-    setPageNumber(itemPageNumber);
-  }
+
   const changePageBack = () => {
     changePage(-1);
   };
@@ -69,6 +73,17 @@ const PDFViewer = ({ file }) => {
   const zoomOut = () => {
     setScale(prevScale => prevScale - 0.5);
   };
+
+  const renderPDFOutline = () => {
+    if (!isMobile) {
+      return <PDFOutline file={file} onItemClick={onItemClick} currPage={pageNumber} />;
+    }
+    return null;
+  };
+
+  function onItemClick({ pageNumber: itemPageNumber }) {
+    setPageNumber(itemPageNumber);
+  }
 
   return (
     <div>
@@ -105,7 +120,7 @@ const PDFViewer = ({ file }) => {
       </div>
 
       <div className="view">
-        <PDFOutline file={file} onItemClick={onItemClick} currPage={pageNumber} />
+        {renderPDFOutline()}
         <div className="pdf-viewer">
           <Document className="pdf-area" file={file.url} onLoadSuccess={onDocumentLoadSuccess}>
             <div ref={viewerRef} className={isOverflowed ? '' : 'page-view'}>

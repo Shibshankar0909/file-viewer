@@ -6,7 +6,7 @@ const FileUpload = ({ onFileUpload }) => {
 
   const handleFileChange = (event) => {
     const files = event.target.files;
-    const allowedTypes = ['text/plain', 'application/json', 'application/pdf', 'text/html'];
+    const allowedTypes = ['text/plain', 'application/json', 'application/pdf', 'text/html',''];
 
     for (let file of files) {
       if (!allowedTypes.includes(file.type)) {
