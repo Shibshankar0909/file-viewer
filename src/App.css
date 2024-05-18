@@ -1,38 +1,210 @@
-.App {
-  text-align: center;
+.app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.file-upload {
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.file-tabs {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-bottom: 20px;
+  max-width: 95vw;
+  overflow-x: scroll;
+}
+
+.file-tabs::-webkit-scrollbar {
+  width: 12px;
+  height: 12px; /* For horizontal scrollbar */
+}
+
+.file-tabs::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.file-tabs::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.file-tabs::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.file-name{
+  width: 100px;
+  font-size: 10px;
+  overflow: hidden;
+  text-wrap: nowrap;
+}
+
+.file-btn{
+  width: 20px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.btn{
+  cursor: pointer;
   color: white;
+  background-color: #3a3737;
 }
 
-.App-link {
-  color: #61dafb;
+.file-tab {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.file-tab.active {
+  background-color: #f0f0f0;
+}
+
+/* .file-tab button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 12px;
+} */
+
+.file-viewer {
+  padding: 20px;
+  border: 1px solid #ccc;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #bac2c8;
+}
+
+.file-viewer pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.pdf-buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: black;
+  padding: 5px;
+}
+
+
+.jump-to-page input {
+  width: 50px;
+  padding: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.jump-to-page button {
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.view{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  background-color: #333333;
+}
+.outline{
+  height: 98vh;
+  width: 200px;
+  background-color: #333333;
+  overflow-y: scroll;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.thumbnail{
+  width: 150px;
+  margin-bottom: 5px;
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.focus{
+  border: 2px solid #0ff;
+  opacity: 0.5;
+}
+.outline::-webkit-scrollbar {
+  width: 12px;
+  height: 12px; /* For horizontal scrollbar */
+}
+
+.outline::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.outline::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.outline::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+.pdf-area{
+}
+.pdf-viewer{
+  overflow: scroll;
+  width: 100%;
+  height: 100vh;
+  background-color: #333333;
+}
+
+.pdf-viewer::-webkit-scrollbar {
+  width: 12px;
+  height: 12px; /* For horizontal scrollbar */
+}
+
+.pdf-viewer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.pdf-viewer::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.pdf-viewer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+.page-view{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 100vh;
+}
+
+.pdf-page{
 }
